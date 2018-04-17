@@ -1,3 +1,15 @@
-<h1>Welcome!</h1>
-<p>This template will change very soon!</p>
-<small>Version 1.0.0</small>
+<div id="message"></div>
+<form enctype="multipart/form-data">
+    <label for="csv-file">
+        Choose File:
+        <input type="file" name="csv-file" id="csv-file" class="file-input" required aria-required="true" />
+    </label>
+    <label for="csv-type">
+        Choose Type:
+        <select name="csv-type" id="csv-type" required>
+            <option value="person">People</option>
+            <option value="people_group">Groups</option>
+        </select>
+    </label>
+    <a class="btn" id="upload-btn">Upload</a>
+</form>

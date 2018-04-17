@@ -70,7 +70,8 @@ nav.main {
     margin: 1px 0;
     text-transform: uppercase;
 }
-nav.main a {
+nav.main a,
+.btn {
     background: #db8f2c;
     border-radius: 5px;
     color: #fff;
@@ -80,9 +81,60 @@ nav.main a {
     text-decoration: none;
 }
 nav.main a.active,
-nav.main a:hover {
+nav.main a:hover,
+.btn:active,
+.btn:hover {
     background: #46af96;
 }
 main {
     padding: 30px;
 }
+
+/* MESSAGE ALERTS */
+#message {
+    background: #46af96;
+    border-radius: 5px;
+    color: #fff;
+    display: none;
+    margin: 0 0 30px;
+    padding: 15px;
+}
+#message.active {
+    display: block;
+}
+#message.error {
+    background: #d43f3a;
+}
+/* END MESSAGE ALERTS */
+
+/* FORM ELEMENTS */
+form {
+    background: #fff;
+    border-radius: 5px;
+    padding: 5px;
+    position: relative;
+    width: 100%;
+}
+label {
+    display: inline-block;
+    margin: 15px;
+    position: relative;
+}
+.file-input,
+select {
+    border: 1px solid #dfdfdf;
+    border-radius: 5px;
+    display: inline;
+    margin: 5px 5px 0 0;
+    min-width: 100%;
+    outline: none;
+    padding: 7px;
+}
+select {
+    height: 34px;
+}
+#upload-btn {
+    cursor: pointer;
+    margin: 0;
+}
+/* END FORM ELEMENTS */
