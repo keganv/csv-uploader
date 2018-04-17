@@ -2,7 +2,7 @@ person_id, first_name, last_name, email_address, group_id, state
 1, "George", "Jetson", "george@spacelysprockets.com", 1, active
 2, "Jane", "Jetson", "jane@jetsonfamily.com", 2, active
 3, "Fred", "Flintstone", "fred@slaterockgravelco.com", 3, active
-4, "Wilma", "Flintstone", "wilma@flintstonefamily.com", 1, active
+4, "Wilma", "Flintstone", "wilma@flintstonefamily.com", 4, active
 5, "Barney", "Rubble", "barney@slaterockgravelco.com", 3, active
 6, "Betty", "Rubble", "betty@rubblefamily.com", 3, active
 7, "Herman", "Munster", "herman@themunsters.com", 2, active
@@ -10,7 +10,7 @@ person_id, first_name, last_name, email_address, group_id, state
 9, "Lilly", "Munster", "lilly@themunsters.com", 2, active
 10, "Glenda", "Good-Witch", "glenda@wizardofoz.com", 3, archived
 11, "Dorothy", "Gale", "dorothy@wizardofoz.com", 3, active
-12, "Scare", "Crow", "scarecrow@wizardofoz.com", 2, archived
+12, "Scare", "Crow", "scarecrow@wizardofoz.com", 4, archived
 13, "Cowardly", "Lion", "cowardlylion@wizardofoz.com", 1, archived
 14, "Tin", "Man", "tinman@wizardofoz.com", 2, active
 15, "Wizard", "Oz", "wizard@wizardofoz.com", 1, active
