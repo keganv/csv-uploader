@@ -31,3 +31,8 @@ $container['entity_manager'] = function ($c) {
     );
     return \Doctrine\ORM\EntityManager::create($settings['doctrine']['connection'], $config);
 };
+
+$container['csv_uploader'] = function ($c) {
+    $csvUploader = new Service\CsvUploader($c['entity_manager']);
+    return $csvUploader;
+};
