@@ -8,11 +8,11 @@ use Model\Base;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="group", uniqueConstraints={
+ * @ORM\Table(name="people_group", uniqueConstraints={
  *     @ORM\UniqueConstraint(name="groupName", columns={"name"})
  * }))
  */
-class Group extends Base
+class PeopleGroup extends Base
 {
     /**
      * @ORM\Column(name="name", type="string", length=100)
@@ -34,4 +34,6 @@ class Group extends Base
     {
         return $this->name;
     }
+
+
 }
