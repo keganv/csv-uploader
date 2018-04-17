@@ -30,7 +30,7 @@ class Person extends Base
     protected $emailAddress;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Group")
+     * @ORM\ManyToOne(targetEntity="PeopleGroup", inversedBy="people")
      * @ORM\JoinColumn(name="group_id", referencedColumnName="id")
      */
     protected $group;
@@ -91,9 +91,9 @@ class Person extends Base
     /**
      * Set the Person's Group
      *
-     * @param Group $group
+     * @param PeopleGroup $group
      */
-    public function setGroup(Group $group)
+    public function setGroup(PeopleGroup $group)
     {
         $this->group = $group;
     }
@@ -101,9 +101,9 @@ class Person extends Base
     /**
      * Get the Person's Group
      *
-     * @return Group
+     * @return PeopleGroup
      */
-    public function getGroup() : Group
+    public function getGroup() : PeopleGroup
     {
         return $this->group;
     }
