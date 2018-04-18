@@ -26,13 +26,9 @@ Open the settings.php file in the `src` directory and update with your database 
 * Point your virtual host document root to your new application's `public` directory.
 * Ensure `logs` directory is web writeable.
 
-To run the application in development mode run the following command.
-
-	composer start
-
 Run this command in the application directory to run the test suite.
 
-	composer test
+	phpunit
 	
 ## Credits
 
