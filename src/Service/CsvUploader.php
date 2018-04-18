@@ -42,7 +42,6 @@ class CsvUploader
     {
         $response['status'] = 'error';
         if (!empty($_FILES)) {
-
             $fileName   = time().'_'.basename($_FILES["file"]["name"]); // Create a unique file name
             $targetDir  = __DIR__ . "/../../temp/"; // Create the upload path
             $targetFile = $targetDir . $fileName;
@@ -98,17 +97,18 @@ class CsvUploader
     protected function createGroup(Reader $csv, Connection $conn) : array
     {
         $response['status'] = 'ok';
+        $validKeys = ['group_id', 'group_name'];
+        $keys = str_replace(' ', '', $csv->getHeader());
+
+        if ($keys !== $validKeys) {
+            $response['status'] = 'error';
+            $response['message'] = "The CSV type does not match. Please check your file structure.";
+            return $response;
+        }
+
         $count = 0;
-
         foreach ($csv as $record) {
-            // Check if the type matches the CSV data
-            if (!isset($record['group_id'])) {
-                $response['status'] = 'error';
-                $response['message'] = "The specified CSV type does not match the data.";
-                return $response;
-            }
-
-            $record = $this->cleanKeys($record);
+            $record = array_combine($keys, array_values($record));
             $stmt = $conn->prepare(
                 "INSERT INTO `people_group` (id, name) " .
                 "VALUES (:id, :groupName) " .
@@ -129,22 +129,23 @@ class CsvUploader
     protected function createPeople(Reader $csv, Connection $conn) : array
     {
         $response['status'] = 'ok';
+        $validKeys = ['person_id', 'first_name', 'last_name', 'email_address', 'group_id', 'state'];
+        $keys = str_replace(' ', '', $csv->getHeader());
+
+        if ($keys !== $validKeys) {
+            $response['status'] = 'error';
+            $response['message'] = "The CSV type does not match. Please check your file structure.";
+            return $response;
+        }
+
         $count = 0;
-
         foreach ($csv as $record) {
-            // Check if the type matches the CSV data
-            if (!isset($record['person_id'])) {
-                $response['status'] = 'error';
-                $response['message'] = "The specified CSV type does not match the data.";
-                return $response;
-            }
-
-            $keys   = str_replace(' ', '', array_keys($record));
             $record = array_combine($keys, array_values($record));
-            $stmt = $conn->prepare(
+            $stmt   = $conn->prepare(
                 "INSERT INTO `person` (id, first_name, last_name, email_address, group_id, state) " .
                 "VALUES (:id, :firstName, :lastName, :emailAddress, :groupId, :state) " .
-                "ON DUPLICATE KEY UPDATE first_name = :firstName, last_name = :lastName, email_address = :emailAddress, group_id = :groupId, state = :state"
+                "ON DUPLICATE KEY UPDATE first_name = :firstName, last_name = :lastName, " .
+                "email_address = :emailAddress, group_id = :groupId, state = :state"
             );
             // Validate the data before inserting it into the database
             $stmt->bindValue(':id', $record['person_id'], PDO::PARAM_INT);
@@ -160,17 +161,5 @@ class CsvUploader
         $response['message'] = $count === 1 ? "$count Person was updated!" : "$count People were updated!";
 
         return $response;
-    }
-
-    /**
-     * Removes white space from keys
-     *
-     * @param array $record
-     * @return array
-     */
-    protected function cleanKeys(array $record)
-    {
-        $keys = str_replace(' ', '', array_keys($record));
-        return array_combine($keys, array_values($record));
     }
 }
