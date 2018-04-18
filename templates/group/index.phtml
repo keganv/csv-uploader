@@ -1,0 +1,29 @@
+<script>
+    $(document).ready(function(){ $("table").tablesorter({ sortList: [[0,0]] }); });
+</script>
+<?php
+    if (!empty($groups)):
+        foreach ($groups as $key => $value) {
+            print "<h2>$key</h2>";
+            print "
+                        <table>
+                            <thead>
+                                <th width='33%'>Name</th><th width='33%'>Email</th><th width='33%'>Status</th>
+                            </thead>
+                            <tbody>";
+            foreach ($value as $person) {
+                print
+                    "<tr>" .
+                    "<td>" . $person['lastName'] . ", " . $person['firstName'] . "</td>" .
+                    "<td>" . $person['emailAddress'] . "</td>" .
+                    "<td>" . $person['state'] . "</td>" .
+                    "</tr>";
+            }
+            print
+                            "</tbody>
+                        </table>";
+        };
+    else :
+        print "There are no people.";
+    endif;
+?>
