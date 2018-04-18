@@ -34,5 +34,7 @@ class PeopleData
         foreach($people as $person) {
             $groups[$person['groupName']][] = $person;
         }
+
+        return $groups;
     }
 }
