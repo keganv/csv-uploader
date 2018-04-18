@@ -35,9 +35,42 @@ class CsvUploader
     }
 
     /**
+     * @param string $table
+     * @return string JSON
+     */
+    public function uploadFile(string $table)
+    {
+        $response['status'] = 'error';
+        if (!empty($_FILES)) {
+
+            $fileName   = time().'_'.basename($_FILES["file"]["name"]); // Create a unique file name
+            $targetDir  = __DIR__ . "/../../temp/"; // Create the upload path
+            $targetFile = $targetDir . $fileName;
+            $fileExt    = pathinfo($targetFile, PATHINFO_EXTENSION);
+            $allowTypes = ['csv']; // Only allow csv file formats
+
+            if (in_array($fileExt, $allowTypes)) {
+                if (move_uploaded_file($_FILES["file"]["tmp_name"], $targetFile)) {
+                    if ($response = $this->import($table, $targetFile)) {
+                        return json_encode($response);
+                    }
+                } else {
+                    $response['status'] = 'error';
+                    $response['message'] = 'An error occurred. Please check your CSV structure.';
+                }
+            } else {
+                $response['status'] = 'ext_error';
+            }
+        }
+
+        //render response data in JSON format
+        return json_encode($response);
+    }
+
+    /**
      * @param  string $table
      * @param  string $filePath
-     * @return string $msg
+     * @return array
      */
     public function import(string $table, string $filePath) : array
     {

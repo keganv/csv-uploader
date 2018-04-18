@@ -33,6 +33,9 @@ $container['entity_manager'] = function ($c) {
 };
 
 $container['csv_uploader'] = function ($c) {
-    $csvUploader = new Service\CsvUploader($c['entity_manager']);
-    return $csvUploader;
+    return Service\CsvUploader($c['entity_manager']);
+};
+
+$container['people_data'] = function ($c) {
+    return new Service\PeopleData($c['entity_manager']);
 };
