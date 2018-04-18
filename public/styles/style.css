@@ -111,6 +111,7 @@ main {
 form {
     background: #fff;
     border-radius: 5px;
+    margin: 0 0 30px;
     padding: 5px;
     position: relative;
     width: 100%;
@@ -138,3 +139,55 @@ select {
     margin: 0;
 }
 /* END FORM ELEMENTS */
+
+/* TABLE STYLES */
+#groups {
+    margin-bottom: 30px;
+}
+h2 {
+    background: #889baa;
+    border-radius: 5px 5px 0 0;
+    color: #fff;
+    padding: 15px;
+    text-transform: uppercase;
+}
+table {
+    background: #fff;
+    border-radius: 0 0 5px 5px;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    width: 100%;
+}
+table thead th {
+    border-left: 1px solid #dfdfdf;
+    cursor: pointer;
+    font-weight: 600;
+    padding: 15px;
+    text-align: left;
+}
+table thead th:first-child {
+    border-left: 0;
+}
+table thead th.headerSortDown::after {
+    content: '\25bc';
+    display: inline-block;
+    float: right;
+}
+table thead th.headerSortUp::after {
+    content: '\25b2';
+    display: inline-block;
+    float: right;
+}
+table thead th:last-child {
+    border-top-right-radius: 5px;
+}
+table tbody tr td {
+    border-left: 1px solid #dfdfdf;
+    border-top: 1px solid #dfdfdf;
+    padding: 15px;
+    text-align: left;
+}
+table tbody tr td:first-child {
+    border-left: 0;
+}
+/* END TABLE STYLES */
