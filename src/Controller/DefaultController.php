@@ -67,7 +67,7 @@ class DefaultController
         }
 
         $table    = $this->request->getParsedBodyParam('table');
-        $uploader = new CsvUploader($this->container->get('entity_manager'));
+        $uploader = $this->container->get('csv_uploader');
 
         if (!$this->hasGroups() && $table === 'person') {
             $response['status'] = 'error';
