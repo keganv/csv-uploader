@@ -37,8 +37,21 @@ $(document).ready(function() {
                 } else {
                     $message.removeClass('error');
                     $message.html(response.message);
+                    getPeopleData();
                 }
             };
         }
     });
+
+    let getPeopleData = function (groupId = 0) {
+        let xhr     = new XMLHttpRequest();
+        let $groups = $('#groups');
+        xhr.open('GET', 'default/peopledata', true);
+        xhr.send(groupId);
+        xhr.onload = function () {
+            $groups.html(xhr.response);
+        };
+    };
+
+    getPeopleData();
 });
